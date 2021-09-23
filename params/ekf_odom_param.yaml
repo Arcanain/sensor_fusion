@@ -3,11 +3,12 @@
 frequency: 30
 sensor_timeout: 0.1
 two_d_mode: true
-transform_time_offset: 0.0
-transform_timeout: 0.0
+transform_time_offset: 0.1
+transform_timeout: 0.1
 print_diagnostics: true
 publish_tf: true
 publish_acceleration: false
+predict_to_current_time: true
 
 map_frame: map
 odom_frame: odom
