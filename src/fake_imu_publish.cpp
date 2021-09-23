@@ -64,7 +64,7 @@ int main(int argc, char** argv){
     */
 
     imu_pub.publish(imu);
-    
+    /*
     geometry_msgs::TransformStamped tfs_msg;
     tf::TransformBroadcaster tfbroadcaster;
 
@@ -79,6 +79,7 @@ int main(int argc, char** argv){
     tfs_msg.transform.rotation.y = 0.0;
     tfs_msg.transform.rotation.z = 1.0;
     tfbroadcaster.sendTransform(tfs_msg);
+    */
     r.sleep();
   }
 }

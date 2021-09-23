@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+    <node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 /base_link /imu_link 100" />
 
     <!-- fake odometry publish -->
     <node pkg="sensor_fusion" name="fake_odom_publish" type="fake_odom_publish"/>
