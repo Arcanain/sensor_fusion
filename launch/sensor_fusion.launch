@@ -4,6 +4,9 @@
     <!-- fake odometry publish -->
     <node pkg="sensor_fusion" name="fake_odom_publish" type="fake_odom_publish"/>
 
+    <!-- fake imu publish -->
+    <node pkg="sensor_fusion" name="fake_imu_publish" type="fake_imu_publish"/>
+
     <!-- robot localization -->
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true" output="screen">
         <rosparam command="load" file="$(find sensor_fusion)/params/ekf_params.yaml" />

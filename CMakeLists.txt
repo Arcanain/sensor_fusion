@@ -25,3 +25,6 @@ include_directories(
 
 add_executable(fake_odom_publish src/fake_odom_publish.cpp)
 target_link_libraries(fake_odom_publish ${catkin_LIBRARIES})
+
+add_executable(fake_imu_publish src/fake_imu_publish.cpp)
+target_link_libraries(fake_imu_publish ${catkin_LIBRARIES})
