@@ -20,7 +20,7 @@ int main(int argc, char** argv){
     imu.angular_velocity.x = 0.01;
     imu.angular_velocity.y = 0.01;
     imu.angular_velocity.z = 0.01; // [rad/sec]
-    /*
+    
     imu.angular_velocity_covariance[0] = 0.02;
     imu.angular_velocity_covariance[1] = 0.0;
     imu.angular_velocity_covariance[2] = 0.0;
@@ -30,12 +30,11 @@ int main(int argc, char** argv){
     imu.angular_velocity_covariance[6] = 0.0;
     imu.angular_velocity_covariance[7] = 0.0;
     imu.angular_velocity_covariance[8] = 0.02;
-    */
 
     imu.linear_acceleration.x = 0.01;      
     imu.linear_acceleration.y = 0.01;  
     imu.linear_acceleration.z = 9.81; 
-    /*
+    
     imu.linear_acceleration_covariance[0] = 0.04;
     imu.linear_acceleration_covariance[1] = 0.0;
     imu.linear_acceleration_covariance[2] = 0.0;
@@ -45,24 +44,22 @@ int main(int argc, char** argv){
     imu.linear_acceleration_covariance[6] = 0.0;
     imu.linear_acceleration_covariance[7] = 0.0;
     imu.linear_acceleration_covariance[8] = 0.04;
-    */
-
+    
     imu.orientation.w = 0.0;
     imu.orientation.x = 0.0;
     imu.orientation.y = 0.0;
     imu.orientation.z = 1.0;
-    /*
-    imu.orientation_covariance[0] = 0.0025;
-    imu.orientation_covariance[0] = 0.0;
-    imu.orientation_covariance[0] = 0.0;
-    imu.orientation_covariance[0] = 0.0;
-    imu.orientation_covariance[0] = 0.0025;
-    imu.orientation_covariance[0] = 0.0;
-    imu.orientation_covariance[0] = 0.0;
-    imu.orientation_covariance[0] = 0.0;
-    imu.orientation_covariance[0] = 0.0025;
-    */
 
+    imu.orientation_covariance[0] = 0.0025;
+    imu.orientation_covariance[0] = 0.0;
+    imu.orientation_covariance[0] = 0.0;
+    imu.orientation_covariance[0] = 0.0;
+    imu.orientation_covariance[0] = 0.0025;
+    imu.orientation_covariance[0] = 0.0;
+    imu.orientation_covariance[0] = 0.0;
+    imu.orientation_covariance[0] = 0.0;
+    imu.orientation_covariance[0] = 0.0025;
+    
     imu_pub.publish(imu);
     /*
     geometry_msgs::TransformStamped tfs_msg;
