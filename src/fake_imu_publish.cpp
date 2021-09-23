@@ -8,7 +8,7 @@ int main(int argc, char** argv){
   ros::NodeHandle n;
   ros::Publisher imu_pub = n.advertise<sensor_msgs::Imu>("/imu/data", 50);
   
-  ros::Rate r(30.0);
+  ros::Rate r(100.0);
 
   while(n.ok()){
     ros::spinOnce();               // check for incoming messages
@@ -17,9 +17,9 @@ int main(int argc, char** argv){
 
     imu.header.frame_id = "imu_link";
     imu.header.stamp = ros::Time::now();
-    imu.angular_velocity.x = 0.1;
-    imu.angular_velocity.y = 0.1;
-    imu.angular_velocity.z = 0.1; // [rad/sec]
+    imu.angular_velocity.x = 0.01;
+    imu.angular_velocity.y = 0.01;
+    imu.angular_velocity.z = 0.01; // [rad/sec]
     /*
     imu.angular_velocity_covariance[0] = 0.02;
     imu.angular_velocity_covariance[1] = 0.0;
@@ -32,8 +32,8 @@ int main(int argc, char** argv){
     imu.angular_velocity_covariance[8] = 0.02;
     */
 
-    imu.linear_acceleration.x = 0.1;      
-    imu.linear_acceleration.y = 0.1;  
+    imu.linear_acceleration.x = 0.01;      
+    imu.linear_acceleration.y = 0.01;  
     imu.linear_acceleration.z = 9.81; 
     /*
     imu.linear_acceleration_covariance[0] = 0.04;

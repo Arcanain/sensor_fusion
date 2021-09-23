@@ -21,7 +21,7 @@ int main(int argc, char** argv){
   current_time = ros::Time::now();
   last_time = ros::Time::now();
 
-  ros::Rate r(30.0);
+  ros::Rate r(100.0);
 
   while(n.ok()){
 

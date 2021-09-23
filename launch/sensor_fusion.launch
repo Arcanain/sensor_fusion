@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link imu_link 50" />
-    <node pkg="tf" type="static_transform_publisher" name="baselink_to_gps" args="0 0 0 0 0 0 base_link gps 50"/>
+    <node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link imu_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="baselink_to_gps" args="0 0 0 0 0 0 base_link gps 100"/>
 
     <!-- fake odometry publish -->
     <node pkg="sensor_fusion" name="fake_odom_publish" type="fake_odom_publish"/>
@@ -11,9 +11,18 @@
 
     <!-- robot localization odom->bae_link -->
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true" output="screen">
-        <rosparam command="load" file="$(find sensor_fusion)/params/ekf_odom_param.yaml" />
+        <rosparam command="load" file="$(find sensor_fusion)/params/ekf_se_odom.yaml" />
         <remap from="/odometry/filtered" to="/fusion/odom" />
         <remap from="odom0" to="/odom" />
+        <remap from="imu0"  to="/imu/data" />
+    </node>
+
+    <!-- robot localization map->odom -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_map" clear_params="true" output="screen">
+        <rosparam command="load" file="$(find sensor_fusion)/params/ekf_se_map.yaml" />
+        <remap from="/odometry/filtered" to="/fusion/odom_map" />
+        <remap from="odom0" to="/odom" />
+        <!--<remap from="odom1" to="/odom" />-->
         <remap from="imu0"  to="/imu/data" />
     </node>
 

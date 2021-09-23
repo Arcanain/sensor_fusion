@@ -85,6 +85,8 @@ Visualization Manager:
           Value: true
         imu_link:
           Value: true
+        map:
+          Value: true
         odom:
           Value: true
       Marker Scale: 1
@@ -93,19 +95,20 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        odom:
-          base_link:
-            gps:
-              {}
-            imu_link:
-              {}
+        map:
+          odom:
+            base_link:
+              gps:
+                {}
+              imu_link:
+                {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: odom
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -129,25 +132,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.9591660499572754
+      Distance: 0.7183399200439453
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -2.742540121078491
+        Y: -0.6679235100746155
+        Z: 3.0577268600463867
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.0747967958450317
+      Pitch: 0.5847968459129333
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.370396614074707
+      Yaw: 3.2953970432281494
     Saved: ~
 Window Geometry:
   Displays:
