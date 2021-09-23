@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- robot localization -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true" output="screen">
+        <rosparam command="load" file="$(find sensor_fusion)/params/ekf_params.yaml" />
+        <remap from="/odometry/filtered" to="/fusion/odom" />
+        <remap from="odom0" to="/odom" />
+        <remap from="imu0"  to="/imu/data" />
+    </node>
+</launch>
