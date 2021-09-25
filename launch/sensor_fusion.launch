@@ -13,9 +13,6 @@
     <node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link imu_link 100" />
     <node pkg="tf" type="static_transform_publisher" name="baselink_to_gps" args="0 0 0 0 0 0 base_link gps 100"/>
     
-    <!-- lidar, imu, gps -->
-    <!-- odom→laser_scan_matcher odom-->
-    
     <!-- fake odometry publish -->
     <node pkg="sensor_fusion" name="fake_odom_publish" type="fake_odom_publish"/>
 
@@ -35,7 +32,6 @@
         <rosparam command="load" file="$(find sensor_fusion)/params/ekf_se_map.yaml" />
         <remap from="/odometry/filtered" to="/odometry/filtered_map" />
         <remap from="odom0" to="/odom" />
-        <!--<remap from="odom1" to="/odom" />-->
         <remap from="imu0"  to="/imu/data" />
     </node>
     
