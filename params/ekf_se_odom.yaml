@@ -17,10 +17,18 @@ world_frame: odom
 
 #odom0: wheel odometry
 odom0: odom0
-odom0_config: [false, false, false,
+#オリジナルの設定(フラッシュみたいに変になる)
+#odom0_config: [false, false, false,
+#               false, false, false,
+#               true , false, false,
+#               false, false, true,
+#               false, false, false]
+
+#変化後の設定(滑らかに動いた)
+odom0_config: [true, true, false,
                false, false, false,
-               true , false, false,
-               false, false, true,
+               false , false, false,
+               false, false, false,
                false, false, false]
         
 #odom0_config: [false, false, false,
