@@ -14,11 +14,16 @@
     <node pkg="tf" type="static_transform_publisher" name="baselink_to_gps" args="0 0 0 0 0 0 base_link gps 100"/>
     
     <!-- fake odometry publish -->
+    <!-- 実際にはodrive_odometryからodom->base_link(/odom)を取得 -->
     <node pkg="sensor_fusion" name="fake_odom_publish" type="fake_odom_publish"/>
 
     <!-- fake imu publish -->
+    <!-- 実際にはadi_driverから/imu/data(madgwickフィルタリング済み)を取得 -->
     <node pkg="sensor_fusion" name="fake_imu_publish" type="fake_imu_publish"/>
     
+    <!-- gnss publish -->
+    <!--<include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/>-->
+
     <!-- robot localization odom->bae_link -->
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true" output="screen">
         <rosparam command="load" file="$(find sensor_fusion)/params/ekf_se_odom.yaml" />
@@ -44,5 +49,5 @@
     </node>
 
     <!-- rviz -->
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find sensor_fusion)/rviz/sensor_fusion.rviz"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find sensor_fusion)/rviz/sensor_fusion.rviz"/>
 </launch>

@@ -16,6 +16,12 @@ int main(int argc, char** argv){
   double vx = 0.1;
   double vy = 0.0;
   double vth = 0.1;
+  
+  /*
+  double vx = 10;
+  double vy = 0.0;
+  double vth = 0.0;
+  */
 
   ros::Time current_time, last_time;
   current_time = ros::Time::now();
