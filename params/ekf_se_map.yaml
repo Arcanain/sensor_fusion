@@ -56,7 +56,7 @@ odom1_relative: false
 # --------------------------------------
 # imu configure:
 
-imu0: /imu/data
+imu0: imu0
 imu0_config: [false, false, false,
               true,  true, false,
               false, false, false,

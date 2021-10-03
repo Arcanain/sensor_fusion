@@ -14,13 +14,15 @@
     <node pkg="tf" type="static_transform_publisher" name="baselink_to_gps" args="0 0 0 0 0 0 base_link gps 100"/>
     
     <!-- fake odometry publish -->
-    <!-- 実際にはodrive_odometryからodom->base_link(/odom)を取得 -->
     <node pkg="sensor_fusion" name="fake_odom_publish" type="fake_odom_publish"/>
+    <!-- 実際には以下のodrive_odometryからodom->base_link(/odom)を取得 -->
+    <!--<node pkg="odrive_odometry" type="odometry_publisher" name="odometry_publisher" clear_params="true" output="screen"/ >-->
 
     <!-- fake imu publish -->
-    <!-- 実際にはadi_driverから/imu/data(madgwickフィルタリング済み)を取得 -->
     <node pkg="sensor_fusion" name="fake_imu_publish" type="fake_imu_publish"/>
-    
+    <!-- 実際には以下のadi_driverから/imu/data(madgwickフィルタリング済み)を取得 -->
+    <!--<include file="$(find adi_driver)/launch/adis16470.launch" />-->
+
     <!-- gnss publish -->
     <!--<include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/>-->
 
