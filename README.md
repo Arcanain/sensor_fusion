@@ -7,7 +7,7 @@ sensor_fusion_with_robot_localization
 roslaunch sensor_fusion realsence_imu.launch 
 rosrun imu_filter_madgwick imu_filter_node _use_mag:=false _publish_tf:=false _world_frame:="enu" imu/data_raw:=/camera/imu
 ```
-# realsenceのIMUとlaser scan mathcerの統合
+## realsenceのIMUとlaser scan mathcerの統合
 
 ```bash
 roslaunch sensor_fusion odom_baselink.launch
