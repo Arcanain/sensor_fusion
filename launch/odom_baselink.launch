@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!--<node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link imu_link 100" />-->
+    <node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link camera_imu_optical_frame 100" />
+       
+    <!-- imu publish -->
+    <include file="$(find sensor_fusion)/launch/realsence_imu.launch" />
+    
+    <!-- laser scan mathcer -->
+    <include file="$(find laser_scan_matcher_navigation)/launch/navigation.launch" />
+
+    <!-- EKF node -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+        <rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization.yaml" />
+    </node>
+
+    <!-- rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find sensor_fusion)/rviz/sensor_fusion.rviz"/>
+</launch>

@@ -6,13 +6,18 @@
         <arg name="enable_gyro" value="true"/>
         <arg name="enable_accel" value="true"/>
     </include>
-
-    <node pkg="imu_filter_madgwick" name="ImuFilter" type="imu_filter_node">
-        <param name="_use_mag" value="false"/>
-        <param name="_publish_tf" value="false"/>
-        <param name="_world_frame" value="enu"/>
-        <!--<param name="imu/data_raw" value="/camera/imu"/>-->
+    
+    <!-- 現状、相補フィルタで行っているが、madgwickフィルタに変更したい -->
+    <!--<node pkg="imu_filter_madgwick" name="imu_filter_madgwick" type="imu_filter_node">
         <remap from="imu/data_raw" to="/camera/imu"/>
+        <param name="use_mag_" value="false"/>
+        <param name="publish_tf_" value="false"/>
+        <param name="world_frame_" value="enu"/>
+    </node>-->
+
+    <!-- IMU Complimentary Filter -->
+    <node name="imu_complementary_filter" pkg="imu_complementary_filter" type="complementary_filter_node">
+        <remap from="imu/data_raw" to="/camera/imu" />
     </node>
 
 </launch>

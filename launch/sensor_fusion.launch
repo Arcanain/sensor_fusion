@@ -26,7 +26,7 @@
     <!-- gnss publish -->
     <!--<include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/>-->
 
-    <!-- robot localization odom->bae_link -->
+    <!-- robot localization odom->base_link -->
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true" output="screen">
         <rosparam command="load" file="$(find sensor_fusion)/params/ekf_se_odom.yaml" />
         <remap from="/odometry/filtered" to="/odometry/filtered" />
