@@ -38,7 +38,6 @@ roslaunch sensor_fusion map_odom.launch
 
 [ERROR] [1633800162.122453692]: INF: txbuf alloc
 
-**屋外で行えば上記のエラーは自然となくなる**
 
 -----------------------------------------------
 
