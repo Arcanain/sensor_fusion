@@ -7,7 +7,7 @@ sensor_fusion_with_robot_localization
 roslaunch sensor_fusion realsence_imu.launch 
 rosrun imu_filter_madgwick imu_filter_node _use_mag:=false _publish_tf:=false _world_frame:="enu" imu/data_raw:=/camera/imu
 ```
-## realsenceのIMUとlaser scan mathcerの統合
+## realsenceのIMUとlaser scan mathcerの統合(odom->base_link)
 
 ```bash
 roslaunch sensor_fusion odom_baselink.launch
@@ -16,6 +16,19 @@ roslaunch sensor_fusion odom_baselink.launch
 1. /camera/imu(sensor_msgs/IMU)をmadgwickfilter(もしくは相補フィルタ)でフィルタリングした/imu/data(sensor_msgs/IMU)を算出
 2. laser scan matherで/pose_with_covariance_stamped(geometry_msgs/PoseWithCovarianceStamped)を算出
 3. robot localozationで/imu/dataと/pose_with_covariance_stampedを統合してodom->base_link間の移動距離を算出(/odometry/filtered)
+
+- rviz
+
+## realsenceのIMUとlaser scan mathcerとGPSの統合(map->odom)
+
+```bash
+roslaunch sensor_fusion map_odom.launch
+```
+
+1. /camera/imu(sensor_msgs/IMU)をmadgwickfilter(もしくは相補フィルタ)でフィルタリングした/imu/data(sensor_msgs/IMU)を算出
+2. laser scan matherで/pose_with_covariance_stamped(geometry_msgs/PoseWithCovarianceStamped)を算出
+3. robot localozationで/imu/dataと/pose_with_covariance_stampedを統合してodom->base_link間の移動距離を算出(/odometry/filtered)
+4. robot localozationで/imu/dataと/pose_with_covariance_stampedと/odometry/gpsを統合してmap->odom間の移動距離を算出(/odometry/filtered_map)
 
 # 参考文献
 
