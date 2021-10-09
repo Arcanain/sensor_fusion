@@ -13,6 +13,7 @@ odom_frame: odom
 base_link_frame: base_link
 world_frame: odom
 
+# -------------------------------------
 # Laser Scan Matching Pose Estimate
 pose0: /pose_with_covariance_stamped
 pose0_config: [true, true, true,
@@ -26,6 +27,7 @@ pose0_nodelay: true
 pose0_differential: false
 pose0_relative: false
 
+# -------------------------------------
 # IMU Complementary Filter output
 imu0: /imu/data
 # Orientation, angular veloctiy, linear acceleration

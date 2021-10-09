@@ -7,17 +7,20 @@
         <arg name="enable_accel" value="true"/>
     </include>
     
-    <!-- 現状、相補フィルタで行っているが、madgwickフィルタに変更したい -->
-    <!--<node pkg="imu_filter_madgwick" name="imu_filter_madgwick" type="imu_filter_node">
+    <!-- IMU Madgwick Filter -->
+    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node">
         <remap from="imu/data_raw" to="/camera/imu"/>
-        <param name="use_mag_" value="false"/>
-        <param name="publish_tf_" value="false"/>
-        <param name="world_frame_" value="enu"/>
-    </node>-->
+        <!--<param name="fixed_frame" type="string" value="imu_link_viz"/>-->
+        <!--<param name="use_magnetic_field_msg" type="bool" value="false"/>-->
+        <param name="use_mag" type="bool" value="false"/>
+        <param name="world_frame" type="string" value="enu"/>
+        <param name="publish_tf" type="bool" value="false"/>
+        <!--<param name="reverse_tf" type="bool" value="true"/>-->
+    </node>
 
     <!-- IMU Complimentary Filter -->
-    <node name="imu_complementary_filter" pkg="imu_complementary_filter" type="complementary_filter_node">
+    <!--<node name="imu_complementary_filter" pkg="imu_complementary_filter" type="complementary_filter_node">
         <remap from="imu/data_raw" to="/camera/imu" />
-    </node>
+    </node>-->
 
 </launch>
