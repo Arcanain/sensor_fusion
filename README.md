@@ -33,6 +33,14 @@ roslaunch sensor_fusion map_odom.launch
 4. robot localozationで/imu/dataと/pose_with_covariance_stampedと/odometry/gpsを統合してmap->odom間の移動距離を算出(/odometry/filtered_map)
 5. navsat_transform_nodeで/odometry/gpsを算出
 
+-----------------------------------------------
+**屋内でGPSを動かすと以下のエラーが生じる**
+
+[ERROR] [1633800162.122453692]: INF: txbuf alloc
+
+**屋外で行えば上記のエラーは自然となくなる**
+-----------------------------------------------
+
 # 参考文献
 
 https://github.com/hrjp/kcctgnss/blob/main/launch/ekf.launch
