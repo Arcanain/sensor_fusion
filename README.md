@@ -31,6 +31,7 @@ roslaunch sensor_fusion map_odom.launch
 2. laser scan matherで/pose_with_covariance_stamped(geometry_msgs/PoseWithCovarianceStamped)を算出
 3. robot localozationで/imu/dataと/pose_with_covariance_stampedを統合してodom->base_link間の移動距離を算出(/odometry/filtered)
 4. robot localozationで/imu/dataと/pose_with_covariance_stampedと/odometry/gpsを統合してmap->odom間の移動距離を算出(/odometry/filtered_map)
+5. navsat_transform_nodeで/odometry/gpsを算出
 
 # 参考文献
 
