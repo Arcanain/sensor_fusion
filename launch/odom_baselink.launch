@@ -10,8 +10,9 @@
     <include file="$(find laser_scan_matcher_navigation)/launch/navigation.launch" />
 
     <!-- EKF node -->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom">
         <rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization.yaml" />
+        <remap from="set_pose" to="initialpose"/>
     </node>
 
     <!-- rviz -->
