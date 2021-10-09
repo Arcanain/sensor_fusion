@@ -19,6 +19,8 @@ roslaunch sensor_fusion odom_baselink.launch
 
 - rviz
 
+https://user-images.githubusercontent.com/52307432/136645633-3b62f71a-ed8d-4fb4-89fe-62d07d6a9085.MOV
+
 ## realsenceのIMUとlaser scan mathcerとGPSの統合(map->odom)
 
 ```bash
