@@ -53,7 +53,7 @@ strsvr_qt
 
 - GUIでの設定画面
 
-最初はstatus = 0だが、しばらく待っているとstatus = 2になる
+最初はstatus = 0だが、しばらく待っている(3分から5分程度)とstatus = 2になる
 
 ```bash
 roslaunch ublox_gps ublox_zed-f9p.launch
