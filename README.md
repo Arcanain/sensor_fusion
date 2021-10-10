@@ -42,7 +42,7 @@ roslaunch sensor_fusion map_odom.launch
 
 # ADIS16470とlaser scan mathcerの統合(odom->base_link, map->odom)
 
-### ublox設定
+### ublox設定(CQ-F9Pを利用する場合)
 
 ```bash
 sudo chmod 666 /dev/ttyACM0
