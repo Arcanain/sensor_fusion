@@ -41,6 +41,12 @@ roslaunch sensor_fusion map_odom.launch
 
 -----------------------------------------------
 
+# ADIS16470とlaser scan mathcerの統合(odom->base_link, map->odom)
+
+```bash
+roslaunch sensor_fusion sensor_fusion.launch
+```
+
 # 参考文献
 
 https://github.com/hrjp/kcctgnss/blob/main/launch/ekf.launch
