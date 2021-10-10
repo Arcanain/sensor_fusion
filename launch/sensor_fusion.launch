@@ -1,53 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-     This launch file provides an example of how to work with GPS data using robot_localization. It runs three nodes:
-       (1) An EKF instance that fuses odometry and IMU data and outputs an odom-frame state estimate
-       (2) A second EKF instance that fuses the same data, but also fuses the transformed GPS data from (3)
-       (3) An instance of navsat_transform_node, which takes in GPS data and produces pose data that has been
-           transformed into your robot's world frame (here, map). The node produces a map-frame state estimate.
-       The first EKF instance produces the odom->base_link transform. The second EKF produces the map->odom transform,
-       but requires the odom->base_link transform from the first instance in order to do so. See the
-       params/dual_ekf_navsat_example.yaml file for parameter specification.
--->
 <launch>
-    <node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link imu_link 100" />
-    <node pkg="tf" type="static_transform_publisher" name="baselink_to_gps" args="0 0 0 0 0 0 base_link gps 100"/>
+    <!--<node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link imu_link 100" />-->
+    <node pkg="tf" type="static_transform_publisher" name="baselink_to_camera" args="0 0 0 0 0 0 base_link camera_link 100" />
+    <!--<node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link camera_imu_optical_frame 100" />-->
+    <node pkg="tf" type="static_transform_publisher" name="gps_transform" args="0 0 0 0 0 0 base_link gps 100"/>
+
+    <!-- imu publish -->
+    <include file="$(find sensor_fusion)/launch/realsence_imu.launch" />
     
-    <!-- fake odometry publish -->
-    <node pkg="sensor_fusion" name="fake_odom_publish" type="fake_odom_publish"/>
-    <!-- 実際には以下のodrive_odometryからodom->base_link(/odom)を取得 -->
-    <!--<node pkg="odrive_odometry" type="odometry_publisher" name="odometry_publisher" clear_params="true" output="screen"/ >-->
+    <!-- laser scan mathcer -->
+    <include file="$(find laser_scan_matcher_navigation)/launch/navigation.launch" />
+    
+    <!-- gps publish -->
+    <include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch" />
 
-    <!-- fake imu publish -->
-    <node pkg="sensor_fusion" name="fake_imu_publish" type="fake_imu_publish"/>
-    <!-- 実際には以下のadi_driverから/imu/data(madgwickフィルタリング済み)を取得 -->
-    <!--<include file="$(find adi_driver)/launch/adis16470.launch" />-->
-
-    <!-- gnss publish -->
-    <!--<include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/>-->
-
-    <!-- robot localization odom->base_link -->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true" output="screen">
-        <rosparam command="load" file="$(find sensor_fusion)/params/ekf_se_odom.yaml" />
-        <remap from="/odometry/filtered" to="/odometry/filtered" />
-        <remap from="odom0" to="/odom" />
-        <remap from="imu0"  to="/imu/data" />
+    <!-- odom to baselink -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom">
+        <rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization.yaml" />
+        <!--<rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization_with_gps.yaml" />-->
+        <remap from="set_pose" to="initialpose"/>
     </node>
 
-    <!-- robot localization map->odom -->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_map" clear_params="true" output="screen">
-        <rosparam command="load" file="$(find sensor_fusion)/params/ekf_se_map.yaml" />
-        <remap from="/odometry/filtered" to="/odometry/filtered_map" />
-        <remap from="odom0" to="/odom" />
-        <remap from="imu0"  to="/imu/data" />
+    <!-- map to odom -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_map">
+        <rosparam command="load" file="$(find sensor_fusion)/params/map_odom_localization.yaml" />
+        <remap from="set_pose" to="initialpose"/>
+        <remap from="odometry/filtered" to="odometry/filtered_map"/>
     </node>
     
     <!-- robot localization gps -->
     <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" clear_params="true" output="screen">
         <rosparam command="load" file="$(find sensor_fusion)/params/navsat_params.yaml" />
         <remap from="/odometry/filtered" to="/odometry/filtered_map"/>
-        <remap from="gps/fix" to="/navsat/fix"/>
-        <remap from="imu/data" to="/imu/data"/>
+        <remap from="gps/fix" to="/ublox_gps/fix"/>
+        <!--<remap from="gps/fix" to="navsat/fix"/>-->
+        <remap from="imu/data" to="imu/data"/>
     </node>
 
     <!-- rviz -->

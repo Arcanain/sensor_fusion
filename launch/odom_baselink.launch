@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <!--<node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link imu_link 100" />-->
-    <node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link camera_imu_optical_frame 100" />
-       
+    <!--<node pkg="tf" type="static_transform_publisher" name="baselink_to_imu" args="0 0 0 0 0 0 base_link camera_imu_optical_frame 100" />-->
+    <node pkg="tf" type="static_transform_publisher" name="baselink_to_camera" args="0 0 0 0 0 0 base_link camera_link 100" />
+
     <!-- imu publish -->
     <include file="$(find sensor_fusion)/launch/realsence_imu.launch" />
     
