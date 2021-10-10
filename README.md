@@ -79,6 +79,10 @@ roslaunch ublox_gps ublox_zed-f9p.launch
 
 **最初はstatus = 0だが、しばらく待っている(3分から5分程度)とstatus = 2になる**
 
+- rviz
+
+https://user-images.githubusercontent.com/52307432/136699756-c74391d3-19e7-4024-b71a-8479e8e17272.MOV
+
 ### ublox設定(rtk2go.comを利用する場合)
 
 ```bash
