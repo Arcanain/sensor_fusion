@@ -17,8 +17,8 @@
 
     <!-- odom to baselink -->
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom">
-        <!--<rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization.yaml" />-->
-        <rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization_with_gps.yaml" />
+        <rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization.yaml" />
+        <!--<rosparam command="load" file="$(find sensor_fusion)/params/odom_baselink_localization_with_gps.yaml" />-->
         <remap from="set_pose" to="initialpose"/>
     </node>
 
