@@ -79,6 +79,38 @@ roslaunch ublox_gps ublox_zed-f9p.launch
 
 **最初はstatus = 0だが、しばらく待っている(3分から5分程度)とstatus = 2になる**
 
+### ublox設定(rtk2go.comを利用する場合)
+
+```bash
+sudo chmod 666 /dev/ttyACM0
+cd ~/RTKLIB/app/qtapp
+strsvr_qt
+```
+
+- GUIでの設定画面
+
+![Screenshot from 2021-10-10 06-51-45](https://user-images.githubusercontent.com/52307432/136698794-c29b1a5b-cdd3-428e-8b24-dd6caaab8951.png)
+
+- Ntrip Serverの設定
+
+![Screenshot from 2021-10-10 06-52-26](https://user-images.githubusercontent.com/52307432/136698837-6e56b583-5704-4175-8994-1d14cba8fa82.png)
+
+- Serialの設定
+
+![Screenshot from 2021-10-10 06-24-54](https://user-images.githubusercontent.com/52307432/136698125-81cd73cc-5ca0-4269-be3d-3f22271bdf5f.png)
+
+- RTK-GNSSの開始
+
+上記の設定が完了したらstartでRTK-GNSSを開始する
+
+![Screenshot from 2021-10-10 06-51-13](https://user-images.githubusercontent.com/52307432/136698754-03651c6c-4498-43f5-b613-d4d5e53f32df.png)
+
+```bash
+roslaunch ublox_gps ublox_zed-f9p.launch
+```
+
+**最初はstatus = 0だが、しばらく待っている(3分から5分程度)とstatus = 2になる**
+
 ## 動作確認
 
 ```bash
