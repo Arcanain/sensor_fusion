@@ -43,6 +43,24 @@ roslaunch sensor_fusion map_odom.launch
 
 # ADIS16470とlaser scan mathcerの統合(odom->base_link, map->odom)
 
+### ublox設定
+
+```bash
+sudo chmod 666 /dev/ttyACM0
+cd ~/RTKLIB/app/qtapp
+strsvr_qt
+```
+
+- GUIでの設定画面
+
+最初はstatus = 0だが、しばらく待っているとstatus = 2になる
+
+```bash
+roslaunch ublox_gps ublox_zed-f9p.launch
+```
+
+## 動作確認
+
 ```bash
 roslaunch sensor_fusion sensor_fusion.launch
 ```
