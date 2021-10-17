@@ -5,8 +5,9 @@
     <node pkg="tf" type="static_transform_publisher" name="baselink_to_camera" args="0 0 0 0 0 0 base_link camera_link 100" />
 
     <!-- imu publish -->
-    <include file="$(find sensor_fusion)/launch/realsence_imu.launch" />
-    
+    <!--<include file="$(find sensor_fusion)/launch/realsence_imu.launch" />-->
+    <include file="$(find adi_driver)/launch/adis16470.launch" />
+
     <!-- laser scan mathcer -->
     <include file="$(find laser_scan_matcher_navigation)/launch/navigation.launch" />
 
